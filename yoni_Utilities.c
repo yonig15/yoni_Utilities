@@ -8,26 +8,21 @@
 #include "Utilities.h";
 
 
-char FILE_NAME[1000];
-
-void InitLog(char filename[1000])
-{
-	
-	strcpy(FILE_NAME, filename);
-
-}
+//----------------------------------------------log----------------------------------------------------
+char Log_File_Name[100];
 
 void Log(char massage[100])
 {
 	time_t t;
 	time(&t);
 	struct tm* timeinfo;
-
 	timeinfo = localtime(&t);
-	char str[1000];
+
+
+	char str[100];
 	sprintf(str, "%d.%d.%d-%d:%d:%d -- %s", timeinfo->tm_mday, timeinfo->tm_mon + 1, timeinfo->tm_year + 1900, timeinfo->tm_hour, timeinfo->tm_min, timeinfo->tm_sec, massage);
 
-	FILE* f = fopen(FILE_NAME, "a");
+	FILE* f = fopen("New_Log_Pro.log", "a");
 	fputs("\n\n", f);
 	fputs(str, f);
 	fputs("\n\n", f);
@@ -36,24 +31,31 @@ void Log(char massage[100])
 	fclose(f);
 }
 
-void ErrorLog(char message[100])
+void Error_Log(char message[100])
 {
 	char newMessage[100];
 	sprintf(newMessage, "Error - %s", message);
 	Log(newMessage);
 }
 
-void EventLog(char message[100])
+void Event_Log(char message[100])
 {
 	char newMessage[100];
 	sprintf(newMessage, "Event - %s", message);
 	Log(newMessage);
 }
 
-void WarningLog(char message[100])
+void Warning_Log(char message[100])
 {
 	char newMessage[100];
 	sprintf(newMessage, "Warning - %s", message);
 	Log(newMessage);
 }
+
+void Log_init(char Log_Name[100])
+{
+	strcpy(Log_File_Name, Log_Name);
+}
+//----------------------------------------------log----------------------------------------------------
+
 
