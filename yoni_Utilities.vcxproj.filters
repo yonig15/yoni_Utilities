@@ -20,7 +20,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Utilities.h">
+    <ClInclude Include="yoni_Utilities.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
